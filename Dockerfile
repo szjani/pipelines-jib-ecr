@@ -11,3 +11,6 @@ RUN go build -ldflags "-s -w" -installsuffix cgo -a -o /ecr-login \
 
 FROM maven:3.6.1-jdk-11
 COPY --from=ecr-credential-helper /ecr-login /usr/bin/docker-credential-ecr-login
+RUN apt-get update; \
+    apt-get install -y --no-install-recommends \
+        gettext-base
